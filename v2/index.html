@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammed Kado — Software Developer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f8fafc;
+    --surface: #fff;
+    --accent: #0d9488;
+    --accent-light: #ccfbf1;
+    --accent-mid: #14b8a6;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 240px;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --accent: #14b8a6;
+    --accent-light: rgba(13,148,136,0.15);
+    --accent-mid: #0d9488;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-header {
+    padding: 28px 20px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-avatar {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-mid));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .sidebar-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .sidebar-role {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .sidebar-nav {
+    padding: 16px 12px;
+    flex: 1;
+  }
+
+  .nav-group {
+    margin-bottom: 24px;
+  }
+
+  .nav-group-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 8px;
+    margin-bottom: 6px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.15s, background 0.15s;
+    border-left: 3px solid transparent;
+    margin-left: -3px;
+  }
+
+  .nav-link i {
+    width: 16px;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+    background: var(--accent-light);
+    border-left-color: var(--accent);
+  }
+
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .sidebar-social {
+    display: flex;
+    gap: 8px;
+  }
+
+  .sidebar-social a {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+  }
+
+  .sidebar-social a:hover {
+    color: var(--accent);
+    background: var(--accent-light);
+    border-color: var(--accent);
+  }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 14px; left: 14px;
+    z-index: 200;
+    width: 40px; height: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .hamburger i { color: var(--text); font-size: 1rem; }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 40;
+  }
+
+  /* MAIN */
+  main {
+    margin-left: var(--sidebar-w);
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 64px;
+  }
+
+  .section:nth-child(odd) { background: var(--bg); }
+  .section:nth-child(even) { background: var(--surface); }
+
+  .section-inner {
+    max-width: 800px;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .section-title::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+    padding-left: 16px;
+  }
+
+  /* HERO */
+  #hero {
+    background: var(--surface);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .hero-name {
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .hero-name span {
+    color: var(--accent);
+  }
+
+  .hero-role {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .hero-desc {
+    font-size: 0.975rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 32px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .btn-accent {
+    padding: 11px 24px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-accent:hover {
+    background: var(--accent-mid);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    padding: 11px 24px;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .meta-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding: 5px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+  }
+
+  .meta-tag i {
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  /* HERO RIGHT */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-avatar {
+    width: 160px; height: 160px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, var(--accent), #06b6d4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    box-shadow: 0 16px 40px rgba(13,148,136,0.2);
+    position: relative;
+  }
+
+  .floating-badges {
+    position: absolute;
+    inset: -24px;
+  }
+
+  .fbadge {
+    position: absolute;
+    padding: 4px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    white-space: nowrap;
+  }
+
+  .fbadge:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%) translateY(-50%); }
+  .fbadge:nth-child(2) { right: 0; top: 50%; transform: translateX(50%) translateY(-50%); }
+  .fbadge:nth-child(3) { bottom: 0; left: 50%; transform: translateX(-50%) translateY(50%); }
+  .fbadge:nth-child(4) { left: 0; top: 50%; transform: translateX(-50%) translateY(-50%); }
+
+  /* ABOUT */
+  #about .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .about-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; }
+  .about-text p + p { margin-top: 14px; }
+
+  mark {
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 0 4px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  .exp-card {
+    padding: 20px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .exp-role {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .exp-company {
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .exp-desc {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* SKILLS */
+  #skills {}
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .skill-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .skill-icon-circle {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .skill-card-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .skill-items { display: flex; flex-direction: column; gap: 10px; }
+
+  .skill-row-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .skill-bar-bg {
+    height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--accent);
+    width: 0%;
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* PROJECTS */
+  #projects {}
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(13,148,136,0.1);
+  }
+
+  .project-stripe {
+    height: 4px;
+  }
+
+  .stripe-teal { background: var(--accent); }
+  .stripe-indigo { background: #6366f1; }
+  .stripe-green { background: #22c55e; }
+  .stripe-orange { background: #f59e0b; }
+
+  .project-body { padding: 24px; }
+
+  .proj-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .proj-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .proj-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  .proj-desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .proj-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .proj-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .proj-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .proj-link:hover { gap: 10px; }
+
+  /* CONTACT */
+  #contact {}
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 32px;
+  }
+
+  .contact-items { display: flex; flex-direction: column; gap: 12px; }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .contact-item-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .contact-item-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .contact-item-value {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .contact-form {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .form-group { margin-bottom: 18px; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(13,148,136,0.1);
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    background: var(--accent);
+    color: #fff;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .form-submit:hover {
+    background: var(--accent-mid);
+    transform: translateY(-1px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 24px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-overlay.show {
+      display: block;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    main {
+      margin-left: 0;
+    }
+
+    .section {
+      padding: 64px 24px;
+    }
+
+    footer {
+      padding: 20px 24px;
+    }
+  }
+
+  .theme-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: color 0.15s, border-color 0.15s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .project-card-solo {
+    grid-column: 1 / -1;
+    max-width: 50%;
+  }
+
+  @media (max-width: 1200px) {
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    #about .about-content { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px 24px; font-size: 0.78rem; }
+    .project-card-solo { max-width: 100%; grid-column: auto; }
+    .form-group input,
+    .form-group textarea { font-size: 1rem; }
+  }
+
+  @media (max-width: 480px) {
+    .section { padding: 48px 16px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .hero-btns { flex-direction: column; }
+    .hero-btns .btn-accent,
+    .hero-btns .btn-outline { width: 100%; justify-content: center; }
+    .section-title { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-avatar">MK</div>
+    <div class="sidebar-name">Muhammed Kado</div>
+    <div class="sidebar-role">Software Developer<br>@ USTEK RFID</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-label">Navigation</div>
+      <a href="#hero" class="nav-link active" data-section="hero">
+        <i class="fa fa-house"></i> Home
+      </a>
+      <a href="#about" class="nav-link" data-section="about">
+        <i class="fa fa-user"></i> About
+      </a>
+      <a href="#skills" class="nav-link" data-section="skills">
+        <i class="fa fa-code"></i> Skills
+      </a>
+      <a href="#projects" class="nav-link" data-section="projects">
+        <i class="fa fa-folder-open"></i> Projects
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact">
+        <i class="fa fa-envelope"></i> Contact
+      </a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Quick Info</div>
+      <div style="padding: 4px 10px; font-size: 0.78rem; color: var(--muted);">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+          <i class="fa fa-location-dot" style="color:var(--accent);width:14px;"></i>
+          Istanbul, Turkey
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+          <i class="fa fa-briefcase" style="color:var(--accent);width:14px;"></i>
+          USTEK RFID
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <i class="fa fa-graduation-cap" style="color:var(--accent);width:14px;"></i>
+          Comp. Eng. 2024
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">
+      <i class="fa fa-moon" id="theme-icon"></i>
+      <span id="theme-label">Dark Mode</span>
+    </button>
+    <div class="sidebar-social">
+      <a href="https://github.com/muhammedkado" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:mehmetkado9@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+      <a href="tel:+905387399262" title="Phone"><i class="fa fa-phone"></i></a>
+    </div>
+  </div>
+</aside>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <i class="fa fa-bars"></i>
+</button>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <section class="section" id="hero">
+    <div class="section-inner" style="max-width:100%;">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-eyebrow">Software Developer</div>
+
+          <h1 class="hero-name">
+            Muhammed<br><span>Kado</span>
+          </h1>
+
+          <div class="hero-role">PHP · Laravel · Flutter · RFID Systems</div>
+
+          <p class="hero-desc">
+            Full-stack software developer building industrial RFID solutions at USTEK RFID in Istanbul. Passionate about clean backends, responsive UIs, and cross-platform mobile apps.
+          </p>
+
+          <div class="hero-btns">
+            <a href="#projects" class="btn-accent">
+              <i class="fa fa-folder-open"></i> View Projects
+            </a>
+            <a href="#contact" class="btn-outline">
+              <i class="fa fa-envelope"></i> Contact Me
+            </a>
+            <a href="https://github.com/muhammedkado" target="_blank" class="btn-outline">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-tag"><i class="fa fa-location-dot"></i> Istanbul, Turkey</div>
+            <div class="meta-tag"><i class="fa fa-briefcase"></i> USTEK RFID</div>
+            <div class="meta-tag"><i class="fa fa-graduation-cap"></i> Computer Engineering, 2024</div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-avatar" style="position:relative;">
+            MK
+            <div class="floating-badges">
+              <span class="fbadge">PHP</span>
+              <span class="fbadge">Laravel</span>
+              <span class="fbadge">Flutter</span>
+              <span class="fbadge">React</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-sub">Background & experience</p>
+
+      <div class="about-content">
+        <div class="about-text reveal">
+          <p>Software Developer at <mark>USTEK RFID</mark> in Istanbul, where I architect and build an <mark>RFID-based Smart Laundry Management System</mark> since May 2023.</p>
+          <p>Graduated with a B.Sc. in <mark>Computer Engineering</mark> from Burdur Mehmet Akif Ersoy University in 2024. My graduation project — <mark>Kado Job App</mark> — is a cross-platform Flutter application that earned a 3-star store rating.</p>
+          <p>Full-stack capable across <mark>PHP/Laravel</mark> backends, <mark>Flutter</mark> mobile applications, and <mark>React</mark> frontends. Experienced with cloud services including Firebase, Azure, and AWS.</p>
+        </div>
+
+        <div class="reveal">
+          <div class="exp-card">
+            <div class="exp-period">May 2023 — Present</div>
+            <div class="exp-role">Software Developer</div>
+            <div class="exp-company"><i class="fa fa-building" style="color:var(--accent);margin-right:4px;"></i> USTEK RFID · Istanbul</div>
+            <div class="exp-desc">RFID-based Smart Laundry System — backend architecture, database design, and client dashboards for industrial operations.</div>
+          </div>
+          <div class="exp-card">
+            <div class="exp-period">2020 — 2024</div>
+            <div class="exp-role">B.Sc. Computer Engineering</div>
+            <div class="exp-company"><i class="fa fa-graduation-cap" style="color:var(--accent);margin-right:4px;"></i> Burdur Mehmet Akif Ersoy University</div>
+            <div class="exp-desc">Graduated 2024. Graduation project: Kado Job App (Flutter, Firebase) — 3-star app store rating.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-inner">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-sub">Technologies & proficiency</p>
+
+      <div class="skills-grid">
+
+        <div class="skill-card reveal">
+          <div class="skill-icon-circle"><i class="fa fa-server"></i></div>
+          <div class="skill-card-title">Backend</div>
+          <div class="skill-items">
+            <div>
+              <div class="skill-row-top"><span>PHP</span><span>90%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="90"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>Laravel</span><span>88%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="88"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>Zend</span><span>65%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="65"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon-circle"><i class="fa fa-code"></i></div>
+          <div class="skill-card-title">Frontend</div>
+          <div class="skill-items">
+            <div>
+              <div class="skill-row-top"><span>jQuery</span><span>85%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="85"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>Bootstrap</span><span>80%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="80"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>React</span><span>72%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="72"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>TypeScript</span><span>65%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="65"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon-circle" style="background:#ede9fe;color:#8b5cf6;"><i class="fa fa-mobile-alt"></i></div>
+          <div class="skill-card-title">Mobile</div>
+          <div class="skill-items">
+            <div>
+              <div class="skill-row-top"><span>Flutter</span><span>80%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="80" style="background:#8b5cf6;"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>Dart</span><span>78%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="78" style="background:#8b5cf6;"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>Firebase</span><span>75%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="75" style="background:#8b5cf6;"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>Bloc</span><span>75%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="75" style="background:#8b5cf6;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon-circle" style="background:#dcfce7;color:#16a34a;"><i class="fa fa-database"></i></div>
+          <div class="skill-card-title">Data & Cloud</div>
+          <div class="skill-items">
+            <div>
+              <div class="skill-row-top"><span>MySQL</span><span>88%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="88" style="background:#16a34a;"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>PostgreSQL</span><span>72%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="72" style="background:#16a34a;"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>Firebase</span><span>75%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="75" style="background:#16a34a;"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-top"><span>Azure / AWS</span><span>58%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="58" style="background:#16a34a;"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Selected work</p>
+
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <div class="project-stripe stripe-teal"></div>
+          <div class="project-body">
+            <div class="proj-header">
+              <div class="proj-name">POS System</div>
+              <span class="proj-badge">FEATURED</span>
+            </div>
+            <p class="proj-desc">Full-featured Point of Sale system with RBAC, multilingual support, inventory management, and AdminLTE dashboard.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">Laravel</span>
+              <span class="proj-tag">AdminLTE</span>
+              <span class="proj-tag">MySQL</span>
+              <span class="proj-tag">jQuery</span>
+              <span class="proj-tag">Bootstrap</span>
+            </div>
+            <a href="https://github.com/muhammedkado/pos-system" class="proj-link" target="_blank">
+              <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-stripe stripe-teal"></div>
+          <div class="project-body">
+            <div class="proj-header">
+              <div class="proj-name">Invoice System</div>
+              <span class="proj-badge">FEATURED</span>
+            </div>
+            <p class="proj-desc">Automated invoice generation with PDF export (TCPDF) and email delivery (PHPMailer) for SME billing.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">PHP 8.2</span>
+              <span class="proj-tag">MySQL</span>
+              <span class="proj-tag">TCPDF</span>
+              <span class="proj-tag">PHPMailer</span>
+            </div>
+            <a href="https://github.com/muhammedkado/invoice-system" class="proj-link" target="_blank">
+              <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-stripe stripe-indigo"></div>
+          <div class="project-body">
+            <div class="proj-header">
+              <div class="proj-name">Kado Job App</div>
+            </div>
+            <p class="proj-desc">Cross-platform mobile job app (graduation project). 3-star rated, built with Flutter, Firebase, Bloc pattern.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">Flutter</span>
+              <span class="proj-tag">Firebase</span>
+              <span class="proj-tag">Dart</span>
+              <span class="proj-tag">Bloc</span>
+            </div>
+            <a href="https://github.com/muhammedkado/kado-job-app" class="proj-link" target="_blank">
+              <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-stripe stripe-indigo"></div>
+          <div class="project-body">
+            <div class="proj-header">
+              <div class="proj-name">Flutter Social App</div>
+            </div>
+            <p class="proj-desc">Real-time social platform with messaging, dark mode, and Firebase backend using Bloc state management.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">Flutter</span>
+              <span class="proj-tag">Firebase</span>
+              <span class="proj-tag">Bloc</span>
+            </div>
+            <a href="https://github.com/muhammedkado/flutter-social-app" class="proj-link" target="_blank">
+              <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal project-card-solo">
+          <div class="project-stripe stripe-orange"></div>
+          <div class="project-body">
+            <div class="proj-header">
+              <div class="proj-name">StyleGpt API</div>
+            </div>
+            <p class="proj-desc">AI-powered styling recommendation REST API integrating GPT for personalized fashion suggestions.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">PHP</span>
+              <span class="proj-tag">AI/GPT</span>
+              <span class="proj-tag">REST API</span>
+            </div>
+            <a href="https://github.com/muhammedkado/stylegpt-api" class="proj-link" target="_blank">
+              <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-sub">Open to new opportunities</p>
+
+      <div class="contact-grid">
+        <div class="contact-items">
+          <a href="mailto:mehmetkado9@gmail.com" class="contact-item reveal">
+            <div class="contact-item-icon"><i class="fa fa-envelope"></i></div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">mehmetkado9@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+905387399262" class="contact-item reveal">
+            <div class="contact-item-icon"><i class="fa fa-phone"></i></div>
+            <div>
+              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-value">+90 538 739 9262</div>
+            </div>
+          </a>
+          <a href="https://github.com/muhammedkado" target="_blank" class="contact-item reveal">
+            <div class="contact-item-icon"><i class="fab fa-github"></i></div>
+            <div>
+              <div class="contact-item-label">GitHub</div>
+              <div class="contact-item-value">github.com/muhammedkado</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank" class="contact-item reveal">
+            <div class="contact-item-icon"><i class="fab fa-linkedin-in"></i></div>
+            <div>
+              <div class="contact-item-label">LinkedIn</div>
+              <div class="contact-item-value">muhammed-kado-21355b1a9</div>
+            </div>
+          </a>
+          <div class="contact-item reveal" style="cursor:default;">
+            <div class="contact-item-icon"><i class="fa fa-location-dot"></i></div>
+            <div>
+              <div class="contact-item-label">Location</div>
+              <div class="contact-item-value">Istanbul, Turkey</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form reveal">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="john@company.com">
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" placeholder="Project inquiry">
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="5" placeholder="Tell me about your project or opportunity..."></textarea>
+          </div>
+          <button class="form-submit">
+            <i class="fa fa-paper-plane" style="margin-right:8px;"></i> Send Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Built by <strong>Muhammed Kado</strong> &copy; 2024</span>
+    <span>
+      <a href="https://github.com/muhammedkado" target="_blank">GitHub</a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank">LinkedIn</a>
+      &nbsp;&middot;&nbsp;
+      <a href="mailto:mehmetkado9@gmail.com">Email</a>
+    </span>
+  </footer>
+
+</main>
+
+<script>
+  // DARK MODE
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const themeLabel = document.getElementById('theme-label');
+
+  function applyTheme(dark) {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    themeIcon.className = dark ? 'fa fa-sun' : 'fa fa-moon';
+    themeLabel.textContent = dark ? 'Light Mode' : 'Dark Mode';
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }
+
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved ? saved === 'dark' : prefersDark);
+
+  themeToggle.addEventListener('click', () => {
+    applyTheme(document.documentElement.getAttribute('data-theme') !== 'dark');
+  });
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+
+  hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+
+  // Close sidebar on nav link click (mobile)
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+    });
+  });
+
+  // SCROLL SPY
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link[data-section]');
+
+  const spyObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.section === id);
+        });
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-10% 0px -50% 0px' });
+
+  sections.forEach(s => spyObserver.observe(s));
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => revealObs.observe(el));
+
+  // SKILL BARS
+  const bars = document.querySelectorAll('.skill-bar-fill');
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.pct + '%';
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  bars.forEach(bar => barObs.observe(bar));
+
+// Force-reveal all elements after page fully loads
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    bars.forEach(bar => { bar.style.width = bar.dataset.pct + '%'; });
+  }, 200);
+});
+</script>
+</body>
+</html>
