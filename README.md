@@ -7,7 +7,7 @@ Personal portfolio & CV — terminal-themed, zero dependencies.
 | Path | Description |
 |------|-------------|
 | `/` | v1 — current portfolio |
-| `/v3` | v3 — alternate version |
+| `/v2` | v2 — alternate version |
 
 ## Stack
 
@@ -30,8 +30,8 @@ Personal portfolio & CV — terminal-themed, zero dependencies.
 ```
 my-cv/
 ├── index.html   ← v1 (root)
-└── v3/
-    └── index.html   ← v3
+└── v2/
+    └── index.html   ← v2
 ```
 
 ## © 2024 Muhammed Kado
