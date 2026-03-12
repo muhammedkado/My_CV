@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammed Kado — Software Developer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600&display=swap">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #1a1a1a;
+    --accent: #00ff88;
+    --accent-dim: #00cc6a;
+    --text: #e8e8e8;
+    --muted: #6b6b6b;
+    --border: #2a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); }
+
+  .nav-hamburger {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+    transition: border-color 0.2s;
+  }
+  .nav-hamburger:hover { border-color: var(--accent); }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 56px; left: 0; right: 0;
+    background: rgba(13,13,13,0.97);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    padding: 16px 24px;
+    backdrop-filter: blur(12px);
+  }
+  .mobile-nav ul { list-style: none; }
+  .mobile-nav-link {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active { color: var(--accent); }
+  .mobile-nav ul li:last-child .mobile-nav-link { border-bottom: none; }
+  .mobile-nav.open { display: block; }
+
+  /* MAIN CONTAINER */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section { padding: 80px 0; }
+
+  /* SECTION TITLES */
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title .prefix {
+    color: var(--accent);
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: 16px;
+  }
+
+  /* HERO */
+  #hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,255,136,0.015) 2px,
+      rgba(0,255,136,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-prompt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-prompt .user { color: var(--accent); }
+  .hero-prompt .separator { color: var(--muted); }
+
+  .hero-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin-bottom: 32px;
+    min-height: 28px;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.1em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .btn-terminal {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-terminal:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .btn-terminal.secondary {
+    border-color: var(--border);
+    color: var(--muted);
+  }
+
+  .btn-terminal.secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: transparent;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hero-meta-item i { color: var(--accent); }
+
+  /* ABOUT */
+  #about { border-top: 1px solid var(--border); }
+
+  .about-text {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 700px;
+  }
+
+  .about-text p + p { margin-top: 16px; }
+
+  .about-text strong { color: var(--accent); font-weight: 600; }
+
+  /* SKILLS */
+  #skills { border-top: 1px solid var(--border); }
+
+  .skills-group { margin-bottom: 32px; }
+
+  .skills-comment {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .skills-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--surface);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .chip .pct {
+    color: var(--accent);
+    margin-left: 4px;
+    opacity: 0.7;
+  }
+
+  /* PROJECTS */
+  #projects { border-top: 1px solid var(--border); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .project-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .project-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    background: rgba(0,255,136,0.05);
+  }
+
+  .project-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 10px; }
+
+  /* EXPERIENCE */
+  #experience { border-top: 1px solid var(--border); }
+
+  .timeline { position: relative; padding-left: 24px; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 36px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(0,255,136,0.5);
+  }
+
+  .timeline-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .timeline-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .timeline-company {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .timeline-desc {
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  #contact { border-top: 1px solid var(--border); }
+
+  .contact-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 2;
+    color: var(--text);
+  }
+
+  .contact-block .key { color: var(--accent); }
+  .contact-block .str { color: #ffd700; }
+  .contact-block .bracket { color: var(--muted); }
+  .contact-block a { color: #ffd700; text-decoration: none; }
+  .contact-block a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* PROJECT CARD SOLO (5th card full-width) */
+  .project-card-solo {
+    grid-column: 1 / -1;
+    max-width: 50%;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    section { padding: 64px 0; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: block; }
+    .hero-name { font-size: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card-solo { max-width: 100%; grid-column: auto; }
+  }
+
+  @media (max-width: 480px) {
+    section { padding: 56px 0; }
+    .container { padding: 0 16px; }
+    .hero-btns { flex-direction: column; }
+    .hero-btns .btn-terminal { width: 100%; justify-content: center; }
+    .section-title { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">[mkado@portfolio ~]$</div>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+    <i class="fa fa-bars" id="hamburger-icon"></i>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#about">./about</a></li>
+    <li><a href="#skills">./skills</a></li>
+    <li><a href="#projects">./projects</a></li>
+    <li><a href="#experience">./experience</a></li>
+    <li><a href="#contact">./contact</a></li>
+  </ul>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <ul>
+    <li><a href="#about" class="mobile-nav-link">./about</a></li>
+    <li><a href="#skills" class="mobile-nav-link">./skills</a></li>
+    <li><a href="#projects" class="mobile-nav-link">./projects</a></li>
+    <li><a href="#experience" class="mobile-nav-link">./experience</a></li>
+    <li><a href="#contact" class="mobile-nav-link">./contact</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-prompt">
+        <span class="user">mkado@portfolio</span>
+        <span class="separator">:</span>
+        <span style="color:#3b9ddd">~/portfolio</span>
+        <span class="separator">$</span>
+        <span>&nbsp;whoami</span>
+      </div>
+
+      <h1 class="hero-name">
+        Muhammed<br><span>Kado</span>
+      </h1>
+
+      <div class="hero-subtitle" id="hero-subtitle"><span class="cursor"></span></div>
+
+      <div class="hero-btns">
+        <a href="#projects" class="btn-terminal">
+          <i class="fa fa-terminal"></i> ./view_projects.sh
+        </a>
+        <a href="#contact" class="btn-terminal">
+          <i class="fa fa-envelope"></i> ./contact.sh
+        </a>
+        <a href="https://github.com/muhammedkado" target="_blank" class="btn-terminal secondary">
+          <i class="fab fa-github"></i> ./github.sh
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item"><i class="fa fa-location-dot"></i> Istanbul, Turkey</div>
+        <div class="hero-meta-item"><i class="fa fa-briefcase"></i> USTEK RFID</div>
+        <div class="hero-meta-item"><i class="fa fa-graduation-cap"></i> Computer Engineering, 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title"><span class="prefix">&gt;_</span> about.md</h2>
+    <div class="about-text reveal">
+      <p>Software Developer at <strong>USTEK RFID</strong> in Istanbul, specializing in building scalable web applications and mobile solutions. Currently architecting an <strong>RFID-based Smart Laundry Management System</strong>.</p>
+      <p>Graduated from <strong>Burdur Mehmet Akif Ersoy University</strong> with a Computer Engineering degree in 2024. Passionate about clean code, performant systems, and shipping products that solve real problems.</p>
+      <p>Full-stack capable: PHP/Laravel backends, Flutter mobile apps, and React frontends. Comfortable with cloud infrastructure on Firebase, Azure, and AWS.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title"><span class="prefix">&gt;_</span> skills.json</h2>
+
+    <div class="skills-group reveal">
+      <div class="skills-comment">/* Backend */</div>
+      <div class="skills-chips">
+        <span class="chip">PHP<span class="pct">90%</span></span>
+        <span class="chip">Laravel<span class="pct">88%</span></span>
+        <span class="chip">Zend<span class="pct">65%</span></span>
+        <span class="chip">REST APIs</span>
+        <span class="chip">RFID Systems</span>
+      </div>
+    </div>
+
+    <div class="skills-group reveal">
+      <div class="skills-comment">/* Frontend */</div>
+      <div class="skills-chips">
+        <span class="chip">jQuery<span class="pct">85%</span></span>
+        <span class="chip">Bootstrap<span class="pct">80%</span></span>
+        <span class="chip">React<span class="pct">72%</span></span>
+        <span class="chip">TypeScript<span class="pct">65%</span></span>
+        <span class="chip">HTML5/CSS3</span>
+        <span class="chip">AdminLTE</span>
+      </div>
+    </div>
+
+    <div class="skills-group reveal">
+      <div class="skills-comment">/* Mobile */</div>
+      <div class="skills-chips">
+        <span class="chip">Flutter<span class="pct">80%</span></span>
+        <span class="chip">Dart<span class="pct">78%</span></span>
+        <span class="chip">Firebase<span class="pct">75%</span></span>
+        <span class="chip">Bloc Pattern</span>
+        <span class="chip">Real-time Apps</span>
+      </div>
+    </div>
+
+    <div class="skills-group reveal">
+      <div class="skills-comment">/* Databases & Cloud */</div>
+      <div class="skills-chips">
+        <span class="chip">MySQL<span class="pct">88%</span></span>
+        <span class="chip">PostgreSQL<span class="pct">72%</span></span>
+        <span class="chip">SQLite<span class="pct">70%</span></span>
+        <span class="chip">Firebase</span>
+        <span class="chip">Azure</span>
+        <span class="chip">AWS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title"><span class="prefix">&gt;_</span> projects/</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-number">// 01</div>
+        <div class="project-name">POS System</div>
+        <div class="project-desc">Full-featured Point of Sale system with role-based access control, multilingual support, and inventory management.</div>
+        <div class="project-tags">
+          <span class="tag">Laravel</span>
+          <span class="tag">AdminLTE</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">jQuery</span>
+          <span class="tag">Bootstrap</span>
+        </div>
+        <a href="https://github.com/muhammedkado/pos-system" class="project-link" target="_blank">
+          <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-number">// 02</div>
+        <div class="project-name">Invoice System</div>
+        <div class="project-desc">Automated invoice generation with PDF export and email delivery. Built for SME billing workflows.</div>
+        <div class="project-tags">
+          <span class="tag">PHP 8.2</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">TCPDF</span>
+          <span class="tag">PHPMailer</span>
+          <span class="tag">Bootstrap</span>
+        </div>
+        <a href="https://github.com/muhammedkado/invoice-system" class="project-link" target="_blank">
+          <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-number">// 03</div>
+        <div class="project-name">Kado Job App</div>
+        <div class="project-desc">Cross-platform job listing mobile app (graduation project). 3-star rated on the store with real-time job matching.</div>
+        <div class="project-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">Dart</span>
+          <span class="tag">Bloc</span>
+        </div>
+        <a href="https://github.com/muhammedkado/kado-job-app" class="project-link" target="_blank">
+          <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-number">// 04</div>
+        <div class="project-name">Flutter Social App</div>
+        <div class="project-desc">Real-time social platform with messaging, dark mode, and Firebase backend. Bloc state management throughout.</div>
+        <div class="project-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">Dart</span>
+          <span class="tag">Bloc</span>
+        </div>
+        <a href="https://github.com/muhammedkado/flutter-social-app" class="project-link" target="_blank">
+          <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="project-card reveal project-card-solo">
+        <div class="project-number">// 05</div>
+        <div class="project-name">StyleGpt API</div>
+        <div class="project-desc">AI-powered styling recommendation API. Integrates GPT capabilities to deliver personalized fashion suggestions.</div>
+        <div class="project-tags">
+          <span class="tag">PHP</span>
+          <span class="tag">AI/GPT</span>
+          <span class="tag">REST API</span>
+        </div>
+        <a href="https://github.com/muhammedkado/stylegpt-api" class="project-link" target="_blank">
+          <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title"><span class="prefix">&gt;_</span> experience.log</h2>
+
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-period">May 2023 — Present</div>
+        <div class="timeline-role">Software Developer</div>
+        <div class="timeline-company">USTEK RFID · Istanbul, Turkey</div>
+        <div class="timeline-desc">
+          Developing an RFID-based Smart Laundry Management System. Architecting backend services, database schemas, and client-facing dashboards for industrial laundry operations tracking.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">2020 — 2024</div>
+        <div class="timeline-role">B.Sc. Computer Engineering</div>
+        <div class="timeline-company">Burdur Mehmet Akif Ersoy University · Turkey</div>
+        <div class="timeline-desc">
+          Graduation project: Kado Job App — a cross-platform mobile job matching application (Flutter, Firebase, Bloc) that achieved a 3-star rating on app stores.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title"><span class="prefix">&gt;_</span> contact.json</h2>
+
+    <div class="contact-block reveal">
+      <pre><span class="bracket">{</span>
+  <span class="key">"name"</span>: <span class="str">"Muhammed Kado"</span>,
+  <span class="key">"email"</span>: <span class="str">"<a href="mailto:mehmetkado9@gmail.com">mehmetkado9@gmail.com</a>"</span>,
+  <span class="key">"phone"</span>: <span class="str">"<a href="tel:+905387399262">+90 538 739 9262</a>"</span>,
+  <span class="key">"location"</span>: <span class="str">"Istanbul, Turkey"</span>,
+  <span class="key">"github"</span>: <span class="str">"<a href="https://github.com/muhammedkado" target="_blank">github.com/muhammedkado</a>"</span>,
+  <span class="key">"linkedin"</span>: <span class="str">"<a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank">in/muhammed-kado-21355b1a9</a>"</span>,
+  <span class="key">"status"</span>: <span class="str">"open_to_opportunities"</span>
+<span class="bracket">}</span></pre>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span style="color:var(--accent)">mkado@portfolio</span>:<span style="color:#3b9ddd">~/portfolio</span>$ <span style="color:var(--muted)">exit 0</span>
+  &nbsp;&nbsp;|&nbsp;&nbsp; Built by Muhammed Kado &copy; 2024
+</footer>
+
+<script>
+  // Typewriter
+  const subtitleEl = document.getElementById('hero-subtitle');
+  const phrases = [
+    'Software Developer @ USTEK RFID',
+    'PHP / Laravel Backend',
+    'Flutter Mobile Developer',
+    'RFID Systems Engineer',
+  ];
+  let phraseIdx = 0, charIdx = 0, deleting = false;
+
+  function typewriter() {
+    const current = phrases[phraseIdx];
+    if (!deleting) {
+      charIdx++;
+      subtitleEl.innerHTML = current.slice(0, charIdx) + '<span class="cursor"></span>';
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(typewriter, 1800);
+        return;
+      }
+    } else {
+      charIdx--;
+      subtitleEl.innerHTML = current.slice(0, charIdx) + '<span class="cursor"></span>';
+      if (charIdx === 0) {
+        deleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+      }
+    }
+    setTimeout(typewriter, deleting ? 40 : 70);
+  }
+
+  typewriter();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // Hamburger menu
+  const navHamburger = document.getElementById('nav-hamburger');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  navHamburger.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburgerIcon.className = isOpen ? 'fa fa-xmark' : 'fa fa-bars';
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburgerIcon.className = 'fa fa-bars';
+    });
+  });
+
+  // Scroll spy
+  const sections = document.querySelectorAll('section[id]');
+  const allNavLinks = document.querySelectorAll('.nav-links a[href^="#"], .mobile-nav-link[href^="#"]');
+
+  const spyObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.getAttribute('id');
+        allNavLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.35, rootMargin: '-10% 0px -50% 0px' });
+
+  sections.forEach(s => spyObserver.observe(s));
+</script>
+</body>
+</html>
