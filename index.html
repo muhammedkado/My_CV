@@ -506,6 +506,29 @@
     max-width: 50%;
   }
 
+  /* CV SECTION */
+  #cv { border-top: 1px solid var(--border); }
+
+  .cv-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .cv-iframe-wrap {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .cv-iframe-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 680px;
+    border: none;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 640px) {
     section { padding: 64px 0; }
@@ -539,6 +562,7 @@
     <li><a href="#projects">./projects</a></li>
     <li><a href="#experience">./experience</a></li>
     <li><a href="#contact">./contact</a></li>
+    <li><a href="#cv">./cv</a></li>
   </ul>
 </nav>
 
@@ -549,6 +573,7 @@
     <li><a href="#projects" class="mobile-nav-link">./projects</a></li>
     <li><a href="#experience" class="mobile-nav-link">./experience</a></li>
     <li><a href="#contact" class="mobile-nav-link">./contact</a></li>
+    <li><a href="#cv" class="mobile-nav-link">./cv</a></li>
   </ul>
 </div>
 
@@ -574,8 +599,11 @@
         <a href="#projects" class="btn-terminal">
           <i class="fa fa-terminal"></i> ./view_projects.sh
         </a>
-        <a href="#contact" class="btn-terminal">
-          <i class="fa fa-envelope"></i> ./contact.sh
+        <a href="Muhammed_Kado_CV.pdf" target="_blank" class="btn-terminal">
+          <i class="fa fa-file-lines"></i> ./view_cv.sh
+        </a>
+        <a href="Muhammed_Kado_CV.pdf" download class="btn-terminal secondary">
+          <i class="fa fa-download"></i> ./download_cv.sh
         </a>
         <a href="https://github.com/muhammedkado" target="_blank" class="btn-terminal secondary">
           <i class="fab fa-github"></i> ./github.sh
@@ -596,9 +624,9 @@
   <div class="container">
     <h2 class="section-title"><span class="prefix">&gt;_</span> about.md</h2>
     <div class="about-text reveal">
-      <p>Software Developer at <strong>USTEK RFID</strong> in Istanbul, specializing in building scalable web applications and mobile solutions. Currently architecting an <strong>RFID-based Smart Laundry Management System</strong>.</p>
-      <p>Graduated from <strong>Burdur Mehmet Akif Ersoy University</strong> with a Computer Engineering degree in 2024. Passionate about clean code, performant systems, and shipping products that solve real problems.</p>
-      <p>Full-stack capable: PHP/Laravel backends, Flutter mobile apps, and React frontends. Comfortable with cloud infrastructure on Firebase, Azure, and AWS.</p>
+      <p>Software Developer at <strong>USTEK RFID</strong> in Istanbul with nearly 3 years of professional experience. I build and maintain web features for an <strong>RFID-based laundry management platform</strong> deployed across <strong>30+ countries</strong>, serving commercial laundries, hotels, and healthcare facilities.</p>
+      <p>My daily stack is <strong>PHP, Laravel, and Zend Framework 1</strong> on the backend with <strong>jQuery and Bootstrap</strong> on the frontend. I also build personal projects using Flutter, React, and Next.js.</p>
+      <p>Graduated from <strong>Burdur Mehmet Akif Ersoy University</strong> with a B.Sc. in Computer Engineering in 2024.</p>
     </div>
   </div>
 </section>
@@ -665,24 +693,8 @@
 
       <div class="project-card reveal">
         <div class="project-number">// 01</div>
-        <div class="project-name">POS System</div>
-        <div class="project-desc">Full-featured Point of Sale system with role-based access control, multilingual support, and inventory management.</div>
-        <div class="project-tags">
-          <span class="tag">Laravel</span>
-          <span class="tag">AdminLTE</span>
-          <span class="tag">MySQL</span>
-          <span class="tag">jQuery</span>
-          <span class="tag">Bootstrap</span>
-        </div>
-        <a href="https://github.com/muhammedkado/pos-system" class="project-link" target="_blank">
-          <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
-        </a>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-number">// 02</div>
-        <div class="project-name">Invoice System</div>
-        <div class="project-desc">Automated invoice generation with PDF export and email delivery. Built for SME billing workflows.</div>
+        <div class="project-name">Invoice Management System</div>
+        <div class="project-desc">Full-featured business invoicing app: PDF generation, email delivery, automatic tax calculations, and payment status tracking (outstanding / paid / overdue).</div>
         <div class="project-tags">
           <span class="tag">PHP 8.2</span>
           <span class="tag">MySQL</span>
@@ -690,51 +702,51 @@
           <span class="tag">PHPMailer</span>
           <span class="tag">Bootstrap</span>
         </div>
-        <a href="https://github.com/muhammedkado/invoice-system" class="project-link" target="_blank">
+        <a href="https://github.com/muhammedkado/invoice-system-php" class="project-link" target="_blank">
+          <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-number">// 02</div>
+        <div class="project-name">Find Job with AI</div>
+        <div class="project-desc">Job search platform that uses AI/LLM integration to intelligently match candidates with relevant job opportunities.</div>
+        <div class="project-tags">
+          <span class="tag">PHP</span>
+          <span class="tag">AI / LLM</span>
+          <span class="tag">REST API</span>
+        </div>
+        <a href="https://github.com/muhammedkado/find_job_with_ai" class="project-link" target="_blank">
           <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
         </a>
       </div>
 
       <div class="project-card reveal">
         <div class="project-number">// 03</div>
-        <div class="project-name">Kado Job App</div>
-        <div class="project-desc">Cross-platform job listing mobile app (graduation project). 3-star rated on the store with real-time job matching.</div>
+        <div class="project-name">Project Management App (Kado Job)</div>
+        <div class="project-desc">Android app for project & team management — graduation project. Features project creation, member invitations, applicant tracking, and real-time messaging via Firebase.</div>
         <div class="project-tags">
           <span class="tag">Flutter</span>
           <span class="tag">Firebase</span>
           <span class="tag">Dart</span>
           <span class="tag">Bloc</span>
         </div>
-        <a href="https://github.com/muhammedkado/kado-job-app" class="project-link" target="_blank">
+        <a href="https://github.com/muhammedkado/kado_jop_app" class="project-link" target="_blank">
           <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
         </a>
       </div>
 
       <div class="project-card reveal">
         <div class="project-number">// 04</div>
-        <div class="project-name">Flutter Social App</div>
-        <div class="project-desc">Real-time social platform with messaging, dark mode, and Firebase backend. Bloc state management throughout.</div>
+        <div class="project-name">Full-Featured POS System</div>
+        <div class="project-desc">Point-of-sale system for retail environments managing products, categories, users, and transactions via an AdminLTE dashboard.</div>
         <div class="project-tags">
-          <span class="tag">Flutter</span>
-          <span class="tag">Firebase</span>
-          <span class="tag">Dart</span>
-          <span class="tag">Bloc</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">jQuery</span>
+          <span class="tag">AdminLTE</span>
         </div>
-        <a href="https://github.com/muhammedkado/flutter-social-app" class="project-link" target="_blank">
-          <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
-        </a>
-      </div>
-
-      <div class="project-card reveal project-card-solo">
-        <div class="project-number">// 05</div>
-        <div class="project-name">StyleGpt API</div>
-        <div class="project-desc">AI-powered styling recommendation API. Integrates GPT capabilities to deliver personalized fashion suggestions.</div>
-        <div class="project-tags">
-          <span class="tag">PHP</span>
-          <span class="tag">AI/GPT</span>
-          <span class="tag">REST API</span>
-        </div>
-        <a href="https://github.com/muhammedkado/stylegpt-api" class="project-link" target="_blank">
+        <a href="https://github.com/muhammedkado/POS-Project-Admin-LTE-Dashboard-" class="project-link" target="_blank">
           <i class="fab fa-github"></i> ./view_repo.sh <i class="fa fa-arrow-right"></i>
         </a>
       </div>
@@ -750,11 +762,11 @@
 
     <div class="timeline reveal">
       <div class="timeline-item">
-        <div class="timeline-period">May 2023 — Present</div>
+        <div class="timeline-period">May 2023 — Present · ~3 years</div>
         <div class="timeline-role">Software Developer</div>
-        <div class="timeline-company">USTEK RFID · Istanbul, Turkey</div>
+        <div class="timeline-company">USTEK RFID · Istanbul, Turkey · <a href="https://ustek-rfid.com" target="_blank" style="color:var(--accent);text-decoration:none;">ustek-rfid.com</a></div>
         <div class="timeline-desc">
-          Developing an RFID-based Smart Laundry Management System. Architecting backend services, database schemas, and client-facing dashboards for industrial laundry operations tracking.
+          Building and maintaining web features for an RFID laundry management platform deployed in 30+ countries. Backend: PHP, Laravel, Zend Framework 1. Frontend: jQuery, Bootstrap. Modules include billing, warehouse monitoring, linen/garment lifecycle tracking, uniform rental, and logistics management.
         </div>
       </div>
 
@@ -778,13 +790,31 @@
     <div class="contact-block reveal">
       <pre><span class="bracket">{</span>
   <span class="key">"name"</span>: <span class="str">"Muhammed Kado"</span>,
-  <span class="key">"email"</span>: <span class="str">"<a href="mailto:mehmetkado9@gmail.com">mehmetkado9@gmail.com</a>"</span>,
+  <span class="key">"email"</span>: <span class="str">"<a href="mailto:eng.muhammedkado@gmail.com">eng.muhammedkado@gmail.com</a>"</span>,
   <span class="key">"phone"</span>: <span class="str">"<a href="tel:+905387399262">+90 538 739 9262</a>"</span>,
   <span class="key">"location"</span>: <span class="str">"Istanbul, Turkey"</span>,
   <span class="key">"github"</span>: <span class="str">"<a href="https://github.com/muhammedkado" target="_blank">github.com/muhammedkado</a>"</span>,
   <span class="key">"linkedin"</span>: <span class="str">"<a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank">in/muhammed-kado-21355b1a9</a>"</span>,
   <span class="key">"status"</span>: <span class="str">"open_to_opportunities"</span>
 <span class="bracket">}</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+  <div class="container">
+    <h2 class="section-title"><span class="prefix">&gt;_</span> cv.pdf</h2>
+    <div class="cv-actions reveal">
+      <a href="Muhammed_Kado_CV.pdf" target="_blank" class="btn-terminal">
+        <i class="fa fa-file-lines"></i> ./view_fullscreen.sh
+      </a>
+      <a href="Muhammed_Kado_CV.pdf" download class="btn-terminal secondary">
+        <i class="fa fa-download"></i> ./download_cv.sh
+      </a>
+    </div>
+    <div class="cv-iframe-wrap reveal">
+      <iframe src="Muhammed_Kado_CV.pdf" title="Muhammed Kado CV"></iframe>
     </div>
   </div>
 </section>
@@ -799,9 +829,9 @@
   const subtitleEl = document.getElementById('hero-subtitle');
   const phrases = [
     'Software Developer @ USTEK RFID',
-    'PHP / Laravel Backend',
-    'Flutter Mobile Developer',
-    'RFID Systems Engineer',
+    'PHP / Laravel / Zend Framework',
+    'jQuery & Bootstrap Frontend',
+    'RFID Systems — 30+ Countries',
   ];
   let phraseIdx = 0, charIdx = 0, deleting = false;
 

@@ -735,6 +735,27 @@
     transform: translateY(-1px);
   }
 
+  /* CV SECTION */
+  .cv-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .cv-iframe-wrap {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .cv-iframe-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 700px;
+    border: none;
+  }
+
   /* FOOTER */
   footer {
     background: var(--surface);
@@ -874,6 +895,9 @@
       <a href="#contact" class="nav-link" data-section="contact">
         <i class="fa fa-envelope"></i> Contact
       </a>
+      <a href="#cv" class="nav-link" data-section="cv">
+        <i class="fa fa-file-lines"></i> CV
+      </a>
     </div>
 
     <div class="nav-group">
@@ -903,7 +927,7 @@
     <div class="sidebar-social">
       <a href="https://github.com/muhammedkado" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
       <a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="mailto:mehmetkado9@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+      <a href="mailto:eng.muhammedkado@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
       <a href="tel:+905387399262" title="Phone"><i class="fa fa-phone"></i></a>
     </div>
   </div>
@@ -939,8 +963,11 @@
             <a href="#projects" class="btn-accent">
               <i class="fa fa-folder-open"></i> View Projects
             </a>
-            <a href="#contact" class="btn-outline">
-              <i class="fa fa-envelope"></i> Contact Me
+            <a href="Muhammed_Kado_CV.pdf" target="_blank" class="btn-accent">
+              <i class="fa fa-file-lines"></i> View CV
+            </a>
+            <a href="Muhammed_Kado_CV.pdf" download class="btn-outline">
+              <i class="fa fa-download"></i> Download CV
             </a>
             <a href="https://github.com/muhammedkado" target="_blank" class="btn-outline">
               <i class="fab fa-github"></i> GitHub
@@ -960,8 +987,8 @@
             <div class="floating-badges">
               <span class="fbadge">PHP</span>
               <span class="fbadge">Laravel</span>
-              <span class="fbadge">Flutter</span>
-              <span class="fbadge">React</span>
+              <span class="fbadge">jQuery</span>
+              <span class="fbadge">Bootstrap</span>
             </div>
           </div>
         </div>
@@ -977,23 +1004,23 @@
 
       <div class="about-content">
         <div class="about-text reveal">
-          <p>Software Developer at <mark>USTEK RFID</mark> in Istanbul, where I architect and build an <mark>RFID-based Smart Laundry Management System</mark> since May 2023.</p>
-          <p>Graduated with a B.Sc. in <mark>Computer Engineering</mark> from Burdur Mehmet Akif Ersoy University in 2024. My graduation project — <mark>Kado Job App</mark> — is a cross-platform Flutter application that earned a 3-star store rating.</p>
-          <p>Full-stack capable across <mark>PHP/Laravel</mark> backends, <mark>Flutter</mark> mobile applications, and <mark>React</mark> frontends. Experienced with cloud services including Firebase, Azure, and AWS.</p>
+          <p>Software Developer at <mark>USTEK RFID</mark> in Istanbul with nearly <mark>3 years of professional experience</mark> building an RFID-based laundry management platform deployed in <mark>30+ countries</mark>.</p>
+          <p>My daily work stack is <mark>PHP, Laravel, and Zend Framework 1</mark> on the backend with <mark>jQuery and Bootstrap</mark> on the frontend. I also build personal projects with Flutter, React, and Next.js.</p>
+          <p>Graduated with a B.Sc. in <mark>Computer Engineering</mark> from Burdur Mehmet Akif Ersoy University in 2024. Graduation project: <mark>Kado Job App</mark> — a Flutter/Firebase Android app for project management.</p>
         </div>
 
         <div class="reveal">
           <div class="exp-card">
-            <div class="exp-period">May 2023 — Present</div>
+            <div class="exp-period">May 2023 — Present · ~3 years</div>
             <div class="exp-role">Software Developer</div>
             <div class="exp-company"><i class="fa fa-building" style="color:var(--accent);margin-right:4px;"></i> USTEK RFID · Istanbul</div>
-            <div class="exp-desc">RFID-based Smart Laundry System — backend architecture, database design, and client dashboards for industrial operations.</div>
+            <div class="exp-desc">PHP, Laravel, Zend Framework 1 backend + jQuery/Bootstrap frontend. RFID laundry management platform in 30+ countries — billing, warehouse monitoring, uniform rental, logistics modules.</div>
           </div>
           <div class="exp-card">
-            <div class="exp-period">2020 — 2024</div>
+            <div class="exp-period">2019 — 2024</div>
             <div class="exp-role">B.Sc. Computer Engineering</div>
             <div class="exp-company"><i class="fa fa-graduation-cap" style="color:var(--accent);margin-right:4px;"></i> Burdur Mehmet Akif Ersoy University</div>
-            <div class="exp-desc">Graduated 2024. Graduation project: Kado Job App (Flutter, Firebase) — 3-star app store rating.</div>
+            <div class="exp-desc">Graduated 2024. Graduation project: Kado Job App — Android app for project management (Flutter, Firebase, Bloc).</div>
           </div>
         </div>
       </div>
@@ -1112,18 +1139,18 @@
           <div class="project-stripe stripe-teal"></div>
           <div class="project-body">
             <div class="proj-header">
-              <div class="proj-name">POS System</div>
+              <div class="proj-name">Invoice Management System</div>
               <span class="proj-badge">FEATURED</span>
             </div>
-            <p class="proj-desc">Full-featured Point of Sale system with RBAC, multilingual support, inventory management, and AdminLTE dashboard.</p>
+            <p class="proj-desc">Full-featured business invoicing app: PDF generation, email delivery, automatic tax calculations, and payment status tracking (outstanding / paid / overdue).</p>
             <div class="proj-tags">
-              <span class="proj-tag">Laravel</span>
-              <span class="proj-tag">AdminLTE</span>
+              <span class="proj-tag">PHP 8.2</span>
               <span class="proj-tag">MySQL</span>
-              <span class="proj-tag">jQuery</span>
+              <span class="proj-tag">TCPDF</span>
+              <span class="proj-tag">PHPMailer</span>
               <span class="proj-tag">Bootstrap</span>
             </div>
-            <a href="https://github.com/muhammedkado/pos-system" class="proj-link" target="_blank">
+            <a href="https://github.com/muhammedkado/invoice-system-php" class="proj-link" target="_blank">
               <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
             </a>
           </div>
@@ -1133,17 +1160,16 @@
           <div class="project-stripe stripe-teal"></div>
           <div class="project-body">
             <div class="proj-header">
-              <div class="proj-name">Invoice System</div>
+              <div class="proj-name">Find Job with AI</div>
               <span class="proj-badge">FEATURED</span>
             </div>
-            <p class="proj-desc">Automated invoice generation with PDF export (TCPDF) and email delivery (PHPMailer) for SME billing.</p>
+            <p class="proj-desc">Job search platform that uses AI/LLM integration to intelligently match candidates with relevant job opportunities.</p>
             <div class="proj-tags">
-              <span class="proj-tag">PHP 8.2</span>
-              <span class="proj-tag">MySQL</span>
-              <span class="proj-tag">TCPDF</span>
-              <span class="proj-tag">PHPMailer</span>
+              <span class="proj-tag">PHP</span>
+              <span class="proj-tag">AI / LLM</span>
+              <span class="proj-tag">REST API</span>
             </div>
-            <a href="https://github.com/muhammedkado/invoice-system" class="proj-link" target="_blank">
+            <a href="https://github.com/muhammedkado/find_job_with_ai" class="proj-link" target="_blank">
               <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
             </a>
           </div>
@@ -1153,16 +1179,16 @@
           <div class="project-stripe stripe-indigo"></div>
           <div class="project-body">
             <div class="proj-header">
-              <div class="proj-name">Kado Job App</div>
+              <div class="proj-name">Project Management App (Kado Job)</div>
             </div>
-            <p class="proj-desc">Cross-platform mobile job app (graduation project). 3-star rated, built with Flutter, Firebase, Bloc pattern.</p>
+            <p class="proj-desc">Android app for project & team management — graduation project. Project creation, member invitations, applicant tracking, and real-time messaging via Firebase.</p>
             <div class="proj-tags">
               <span class="proj-tag">Flutter</span>
               <span class="proj-tag">Firebase</span>
               <span class="proj-tag">Dart</span>
               <span class="proj-tag">Bloc</span>
             </div>
-            <a href="https://github.com/muhammedkado/kado-job-app" class="proj-link" target="_blank">
+            <a href="https://github.com/muhammedkado/kado_jop_app" class="proj-link" target="_blank">
               <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
             </a>
           </div>
@@ -1172,33 +1198,16 @@
           <div class="project-stripe stripe-indigo"></div>
           <div class="project-body">
             <div class="proj-header">
-              <div class="proj-name">Flutter Social App</div>
+              <div class="proj-name">Full-Featured POS System</div>
             </div>
-            <p class="proj-desc">Real-time social platform with messaging, dark mode, and Firebase backend using Bloc state management.</p>
+            <p class="proj-desc">Point-of-sale system for retail environments managing products, categories, users, and transactions via an AdminLTE dashboard.</p>
             <div class="proj-tags">
-              <span class="proj-tag">Flutter</span>
-              <span class="proj-tag">Firebase</span>
-              <span class="proj-tag">Bloc</span>
+              <span class="proj-tag">Laravel</span>
+              <span class="proj-tag">PostgreSQL</span>
+              <span class="proj-tag">jQuery</span>
+              <span class="proj-tag">AdminLTE</span>
             </div>
-            <a href="https://github.com/muhammedkado/flutter-social-app" class="proj-link" target="_blank">
-              <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="project-card reveal project-card-solo">
-          <div class="project-stripe stripe-orange"></div>
-          <div class="project-body">
-            <div class="proj-header">
-              <div class="proj-name">StyleGpt API</div>
-            </div>
-            <p class="proj-desc">AI-powered styling recommendation REST API integrating GPT for personalized fashion suggestions.</p>
-            <div class="proj-tags">
-              <span class="proj-tag">PHP</span>
-              <span class="proj-tag">AI/GPT</span>
-              <span class="proj-tag">REST API</span>
-            </div>
-            <a href="https://github.com/muhammedkado/stylegpt-api" class="proj-link" target="_blank">
+            <a href="https://github.com/muhammedkado/POS-Project-Admin-LTE-Dashboard-" class="proj-link" target="_blank">
               <i class="fab fa-github"></i> View on GitHub <i class="fa fa-arrow-right"></i>
             </a>
           </div>
@@ -1216,11 +1225,11 @@
 
       <div class="contact-grid">
         <div class="contact-items">
-          <a href="mailto:mehmetkado9@gmail.com" class="contact-item reveal">
+          <a href="mailto:eng.muhammedkado@gmail.com" class="contact-item reveal">
             <div class="contact-item-icon"><i class="fa fa-envelope"></i></div>
             <div>
               <div class="contact-item-label">Email</div>
-              <div class="contact-item-value">mehmetkado9@gmail.com</div>
+              <div class="contact-item-value">eng.muhammedkado@gmail.com</div>
             </div>
           </a>
           <a href="tel:+905387399262" class="contact-item reveal">
@@ -1278,6 +1287,25 @@
     </div>
   </section>
 
+  <!-- CV -->
+  <section class="section" id="cv">
+    <div class="section-inner">
+      <h2 class="section-title">My CV</h2>
+      <p class="section-sub">View or download my resume</p>
+      <div class="cv-actions reveal">
+        <a href="Muhammed_Kado_CV.pdf" target="_blank" class="btn-accent">
+          <i class="fa fa-file-lines"></i> View Full Screen
+        </a>
+        <a href="Muhammed_Kado_CV.pdf" download class="btn-outline">
+          <i class="fa fa-download"></i> Download CV
+        </a>
+      </div>
+      <div class="cv-iframe-wrap reveal">
+        <iframe src="Muhammed_Kado_CV.pdf" title="Muhammed Kado CV"></iframe>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <span>Built by <strong>Muhammed Kado</strong> &copy; 2024</span>
     <span>
@@ -1285,7 +1313,7 @@
       &nbsp;&middot;&nbsp;
       <a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank">LinkedIn</a>
       &nbsp;&middot;&nbsp;
-      <a href="mailto:mehmetkado9@gmail.com">Email</a>
+      <a href="mailto:eng.muhammedkado@gmail.com">Email</a>
     </span>
   </footer>
 
